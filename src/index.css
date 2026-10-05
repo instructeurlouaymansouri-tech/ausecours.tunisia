@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-inter: 'Inter', sans-serif;
+    --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+    --font-arabic: 'Cairo', 'Tajawal', sans-serif;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background-color: #05070d;
+    color: #f1f5f9;
+    overflow-x: hidden;
+  }
+
+  /* RTL font styling for Arabic and Tunisian */
+  [dir="rtl"] {
+    font-family: 'Cairo', 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom Glassmorphism Classes */
+.glass-panel {
+  background: rgba(13, 17, 28, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+}
+
+.glass-panel-red {
+  background: rgba(220, 38, 38, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  box-shadow: 0 0 35px -5px rgba(239, 68, 68, 0.2);
+}
+
+.glass-panel-emerald {
+  background: rgba(16, 185, 129, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.2);
+}
+
+.glass-button-fluid {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-button-fluid:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 32px rgba(239, 68, 68, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Red Emergency Glow Pulse */
+@keyframes emergency-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4), 0 0 30px rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.8), 0 0 60px rgba(239, 68, 68, 0.4);
+  }
+}
+
+.animate-emergency-pulse {
+  animation: emergency-pulse 2s infinite ease-in-out;
+}
+
+/* Gyrophare rotation */
+@keyframes gyrophare-strobe {
+  0% { transform: rotate(0deg); opacity: 0.9; }
+  50% { transform: rotate(180deg); opacity: 0.4; }
+  100% { transform: rotate(360deg); opacity: 0.9; }
+}
+
+.animate-gyrophare {
+  animation: gyrophare-strobe 1.5s linear infinite;
+}
+
+/* Heartbeat pulse */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.4s infinite ease-in-out;
+}
+
+/* ECG line animation */
+@keyframes ecg-dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.animate-ecg {
+  stroke-dasharray: 200;
+  animation: ecg-dash 4s linear infinite;
+}
+
+/* Radar Sweep */
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-radar {
+  animation: radar-spin 4s linear infinite;
+}
+
+/* Floating 3D */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+}
+
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+/* Sticky Note Shadow & Feel */
+.sticky-note-yellow {
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
+  color: #1f2937;
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.4);
+  transform: rotate(-1.5deg);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.sticky-note-yellow:hover {
+  transform: scale(1.04) rotate(0deg);
+  box-shadow: 8px 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+.sticky-note-cyan {
+  background: linear-gradient(135deg, #a5f3fc 0%, #67e8f9 100%);
+  color: #0f172a;
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.4);
+  transform: rotate(1.5deg);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.sticky-note-cyan:hover {
+  transform: scale(1.04) rotate(0deg);
+  box-shadow: 8px 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+.sticky-note-pink {
+  background: linear-gradient(135deg, #fbcfe8 0%, #f472b6 100%);
+  color: #1e1b4b;
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.4);
+  transform: rotate(-1deg);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.sticky-note-pink:hover {
+  transform: scale(1.04) rotate(0deg);
+  box-shadow: 8px 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #090c15;
+}
+::-webkit-scrollbar-thumb {
+  background: #252e48;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ef4444;
+}
+
+/* Map Dark Theme override */
+.leaflet-container {
+  background-color: #080c14 !important;
+  font-family: inherit !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: rgba(13, 17, 28, 0.95) !important;
+  color: #fff !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+  border-radius: 12px !important;
+}
+
