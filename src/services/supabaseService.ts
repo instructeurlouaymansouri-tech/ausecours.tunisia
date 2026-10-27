@@ -4,7 +4,8 @@ import { TrainingRegistration, Review } from '../types';
 const SUPABASE_URL = "https://kXqH4VxJvG15imhqy7dwiw.supabase.co";
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Safely initialize Supabase client only if a valid key is provided, otherwise null
+export const supabase = SUPABASE_ANON_KEY ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 const STORAGE_KEY_REGISTRATIONS = 'ausecours_registrations';
 const STORAGE_KEY_REVIEWS = 'ausecours_reviews';
@@ -57,10 +58,12 @@ export async function saveTrainingRegistration(data: Omit<TrainingRegistration, 
     passCode: 'PASS-TN-' + Math.floor(100000 + Math.random() * 900000)
   };
 
-  try {
-    await supabase.from('training_registrations').insert([newReg]);
-  } catch (e) {
-    console.warn("Supabase remote save fallback to localStorage:", e);
+  if (supabase) {
+    try {
+      await supabase.from('training_registrations').insert([newReg]);
+    } catch (e) {
+      console.warn("Supabase remote save fallback to localStorage:", e);
+    }
   }
 
   // Local storage backup
@@ -83,10 +86,12 @@ export async function submitReview(review: Omit<Review, 'id' | 'date' | 'verifie
     verified: true
   };
 
-  try {
-    await supabase.from('reviews').insert([newReview]);
-  } catch (e) {
-    console.warn("Supabase review submit fallback:", e);
+  if (supabase) {
+    try {
+      await supabase.from('reviews').insert([newReview]);
+    } catch (e) {
+      console.warn("Supabase review submit fallback:", e);
+    }
   }
 
   const existing = getReviews();
