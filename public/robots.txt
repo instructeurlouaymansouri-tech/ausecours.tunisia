@@ -1,0 +1,6 @@
+# User-agent configuration for web crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ausecours-tunisia.vercel.app/sitemap.xml
